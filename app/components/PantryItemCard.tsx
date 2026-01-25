@@ -4,24 +4,28 @@ import { Image } from 'expo-image';
 const TestImage = require('../../assets/images/test-images/avocado.jpg');
 const STATUS_COLORS = {
     fresh: '#28a745', // Green
+    good: '#2474ec', // Blue
     use_soon: '#ffbf00', // Yellow
     expired: '#dc3545', // Red
-    consumed: '#6c757d', // Gray
-    discarded: '#343a40', // Dark Gray
+    consumed: '#4217b8', // Purple
+    discarded: '#6c757d', // Gray
+    unknown: '#343a40', // Dark Gray
 }
 
 const STATUS_LABELS: Record<string, string> = {
     fresh: 'Fresh',
+    good: 'Good',
     use_soon: 'Use Soon',
     expired: 'Expired',
     consumed: 'Consumed',
     discarded: 'Discarded',
+    unknown: 'Unknown',
 };
 
 type PantryItemCardProps = {
     name: string;
     quantity: number;
-    status: 'fresh' | 'use_soon' | 'expired' | 'consumed' | 'discarded';
+    status: 'fresh' | 'good' | 'use_soon' | 'expired' | 'consumed' | 'discarded' | 'unknown';
     location: 'pantry' | 'fridge' | 'freezer' | 'other';
     urgencyLabel: string;
 };
