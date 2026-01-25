@@ -1,8 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native';
 import { Image } from 'expo-image';
+import type { PantryItem, PantryStatus, PantryLocation } from "../types/pantry";
 
 const TestImage = require('../../assets/images/test-images/avocado.jpg');
-const STATUS_COLORS = {
+
+const STATUS_COLORS: Record<PantryStatus, string> = {
     fresh: '#28a745', // Green
     good: '#2474ec', // Blue
     use_soon: '#ffbf00', // Yellow
@@ -12,7 +14,7 @@ const STATUS_COLORS = {
     unknown: '#343a40', // Dark Gray
 }
 
-const STATUS_LABELS: Record<string, string> = {
+const STATUS_LABELS: Record<PantryStatus, string> = {
     fresh: 'Fresh',
     good: 'Good',
     use_soon: 'Use Soon',
@@ -23,36 +25,34 @@ const STATUS_LABELS: Record<string, string> = {
 };
 
 type PantryItemCardProps = {
-    name: string;
-    quantity: number;
-    status: 'fresh' | 'good' | 'use_soon' | 'expired' | 'consumed' | 'discarded' | 'unknown';
-    location: 'pantry' | 'fridge' | 'freezer' | 'other';
+    item: Pick<PantryItem, "name" | "quantity" | "status" | "location">;
     urgencyLabel: string;
 };
 
-export default function PantryItemCard({ name, quantity, status, location, urgencyLabel }: PantryItemCardProps) {
+export default function PantryItemCard({ item, urgencyLabel }: PantryItemCardProps) {
+    const locationText = (item.location ?? "other").toUpperCase();
     return (
         <View style={styles.container}>
 
             <Image source={TestImage} style={styles.testImage} />
 
             <View style={styles.itemDetails}>
-                <Text style={styles.name}>{name}</Text>
+                <Text style={styles.name}>{item.name}</Text>
                 <View style={styles.metaRow}>
-                    <Text style={[styles.meta, { color: STATUS_COLORS[status] }]}>
-                        {STATUS_LABELS[status].toUpperCase()}
+                    <Text style={[styles.meta, { color: STATUS_COLORS[item.status] }]}>
+                        {STATUS_LABELS[item.status].toUpperCase()}
                     </Text>
 
                     <Text style={styles.meta}> • </Text>
 
                     <Text style={styles.meta}>
-                        {location.toUpperCase()}
+                        {locationText}
                     </Text>
                 </View>
             </View>
 
             <View style={styles.right}>
-                <Text style={styles.quantity}>{quantity}</Text>
+                <Text style={styles.quantity}>{item.quantity ?? 0}</Text>
                 <Text style={styles.urgency}>{urgencyLabel}</Text>
             </View>
         </View>
