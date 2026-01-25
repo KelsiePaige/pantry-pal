@@ -1,6 +1,5 @@
 import ActiveFilters from '../components/ActiveFilters';
 import HeaderSummary from '../components/HeaderSummary';
-import PantryItemCard from '../components/PantryItemCard';
 import { View, StyleSheet } from 'react-native';
 
 export default function PantryScreen() {
@@ -13,7 +12,7 @@ export default function PantryScreen() {
                 <ActiveFilters />
             </View>
             <View style={styles.pantryItemCardStyles}>
-                <PantryItemCard name='Avocado' quantity={5} status='use_soon' location='pantry' urgencyLabel='Use within 3 days' />
+                
             </View>
         </View>
     );
