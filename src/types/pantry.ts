@@ -21,7 +21,7 @@ export type PantryUnit =
     | "gal"
     | "pt"
     | "qt"
-    | "fl oz"
+    | "fl_oz"
     | "bag"
     | "box"
     | "can"
