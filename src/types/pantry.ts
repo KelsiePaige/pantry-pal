@@ -4,26 +4,28 @@ export type PantrySource = "manual" | "barcode" | "receipt";
 
 export type PantryStatus = "fresh" | "good" | "use_soon" | "expired" | "consumed" | "discarded" | "unknown";
 
+export type PantryLocation = "pantry" | "fridge" | "freezer" | "other";
+
 export type PantryUnit =
-  | "count"
-  | "g"
-  | "mg"
-  | "kg"
-  | "oz"
-  | "lb"
-  | "ml"
-  | "l"
-  | "tsp"
-  | "tbsp"
-  | "cup"
-  | "gal"
-  | "pt"
-  | "qt"
-  | "fl oz"
-  | "bag"
-  | "box"
-  | "can"
-  | "jar";
+    | "count"
+    | "g"
+    | "mg"
+    | "kg"
+    | "oz"
+    | "lb"
+    | "ml"
+    | "l"
+    | "tsp"
+    | "tbsp"
+    | "cup"
+    | "gal"
+    | "pt"
+    | "qt"
+    | "fl oz"
+    | "bag"
+    | "box"
+    | "can"
+    | "jar";
 
 /**
  * Canonical local model for Pantry items (UI-first).
@@ -31,35 +33,38 @@ export type PantryUnit =
  * so UI can render without recalculating in every component.
  */
 export interface PantryItem {
-  // Identity
-  id: string;
+    // Identity
+    id: string;
 
-  // Display
-  name: string;
-  categorySlug?: string; // e.g. "produce", "dairy", "canned_goods"
-  brand?: string;
+    // Display
+    name: string;
+    categorySlug?: string; // e.g. "produce", "dairy", "canned_goods"
+    brand?: string;
 
-  // Quantity (minimal but flexible)
-  quantity?: number;
-  unit?: PantryUnit;
+    // Quantity (minimal but flexible)
+    quantity?: number;
+    unit?: PantryUnit;
 
-  // Dates
-  purchasedAt?: string; // ISO string
-  openedAt?: string; // ISO string
-  expiresAt?: string; // ISO string
+    // Location
+    location?: PantryLocation;
 
-  // Origin / metadata
-  source: PantrySource;
-  barcode?: string;
+    // Dates
+    purchasedAt?: string; // ISO string
+    openedAt?: string; // ISO string
+    expiresAt?: string; // ISO string
 
-  // UX helpers
-  notes?: string;
+    // Origin / metadata
+    source: PantrySource;
+    barcode?: string;
 
-  // Derived / UI-facing
-  status: PantryStatus; // computed by your logic
-  confidence?: "high" | "medium" | "low"; // optional: for scanned/derived fields
+    // UX helpers
+    notes?: string;
 
-  // Timestamps (useful even locally)
-  createdAt: string; // ISO string
-  updatedAt: string; // ISO string
+    // Derived / UI-facing
+    status: PantryStatus; // computed by your logic
+    confidence?: "high" | "medium" | "low"; // optional: for scanned/derived fields
+
+    // Timestamps (useful even locally)
+    createdAt: string; // ISO string
+    updatedAt: string; // ISO string
 }
