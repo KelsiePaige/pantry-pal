@@ -59,7 +59,7 @@ export type ManualPantryItemDraft = {
  * Canonical local model for Pantry items (UI-first).
  **/
 export interface PantryItem {
-    // Identity (required)
+    // Identity (UUID v4, generated locally)
     id: string;
 
     // Core display (required/optional)
