@@ -1,6 +1,7 @@
+import { View, StyleSheet } from 'react-native';
 import ActiveFilters from '../components/ActiveFilters';
 import HeaderSummary from '../components/HeaderSummary';
-import { View, StyleSheet } from 'react-native';
+import { pantrySeedItems }  from '../data/pantrySeeds';
 
 export default function PantryScreen() {
     return (
