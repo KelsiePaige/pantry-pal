@@ -30,7 +30,9 @@ export type PantryUnit =
     | "bag"
     | "box"
     | "can"
-    | "jar";
+    | "jar"
+    | "bottle"
+    | "pack";
 
 export type ConfidenceLevel = "high" | "medium" | "low";
 
